@@ -1,5 +1,7 @@
 # 📘 Usage Guide
 
+[🇨🇳 中文使用说明](./usage.zh-CN.md)
+
 ## 🧾 Input Format
 
 - Input should be a `.xlsx` Excel file
@@ -15,11 +17,6 @@
 [www.nature.com/articles/s41586-020-2012-7](http://www.nature.com/articles/s41586-020-2012-7)
 
 ````
-#### 😄 Protocol Handling Notice
-
-This project can automatically handle URLs that do not contain protocol headers (e.g., www.example.com or doi.org/...). During preprocessing, they will be normalized to standard form by automatically adding https:// as needed. No manual correction is required.
-
-
 
 ---
 
@@ -31,6 +28,11 @@ This project can automatically handle URLs that do not contain protocol headers 
 | PMC       | e.g., `https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1234567/` |
 | DOI       | e.g., `https://doi.org/10.1001/jama.2020.1585` |
 | Journal   | Article URLs from Nature, Science, JAMA, etc. |
+
+
+#### 😄 Protocol Handling Notice
+
+This project can automatically handle URLs that do not contain protocol headers (e.g., www.example.com or doi.org/...). During preprocessing, they will be normalized to standard form by automatically adding https:// as needed. No manual correction is required.
 
 ---
 

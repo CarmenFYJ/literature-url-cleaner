@@ -15,6 +15,11 @@
 [www.nature.com/articles/s41586-020-2012-7](http://www.nature.com/articles/s41586-020-2012-7)
 
 ````
+#### 😄 Protocol Handling Notice
+
+This project can automatically handle URLs that do not contain protocol headers (e.g., www.example.com or doi.org/...). During preprocessing, they will be normalized to standard form by automatically adding https:// as needed. No manual correction is required.
+
+
 
 ---
 
@@ -81,5 +86,5 @@ This is used in API headers to access NCBI/CrossRef services.
 📧 Email: [fyj20000313@126.com](mailto:fyj20000313@126.com)
 
 💻 GitHub: [literature-url-cleaner](https://github.com/your-username/literature-url-cleaner)
-💻 GitHub: [literature-url-cleaner](https://github.com/your-username/literature-url-cleaner)
+
 

@@ -20,7 +20,7 @@ A Python tool for cleaning, classifying, and normalizing scientific literature U
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/your-username/literature-url-cleaner.git
+git https://github.com/CarmenFYJ/literature-url-cleaner.git
 cd literature-url-cleaner
 pip install -r requirements.txt
 # literature-url-cleaner

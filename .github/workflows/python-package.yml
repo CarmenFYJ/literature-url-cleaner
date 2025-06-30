@@ -13,12 +13,13 @@ jobs:
 
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2  # 检出你的仓库内容
+      uses: actions/checkout@v4  # 检出你的仓库内容
+      
 
     - name: Set up Python
-      uses: actions/upload-artifact@v4
+      uses: actions/setup-python@v4
       with:
-        python-version: 3.8  # 配置 Python 版本，可以根据需要调整
+        python-version: ‘3.8’  # 配置 Python 版本，可以根据需要调整
 
     - name: Install dependencies
       run: |
@@ -27,12 +28,11 @@ jobs:
 
     - name: Run tests
       run: |
-        # 这里假设你使用 pytest 进行测试
-        pytest  # 运行你的测试（如果有的话）
+        pytest --junitxml=test-results.xml
         
     - name: Upload test results to GitHub
       if: always()  # 始终上传结果
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: test-results.xml  # 假设你使用 XML 格式保存测试结果

@@ -6,3 +6,4 @@ urllib3
 cloudscraper
 aiohttp>=3.8.1
 proxy-list>=0.3.8
+pytest

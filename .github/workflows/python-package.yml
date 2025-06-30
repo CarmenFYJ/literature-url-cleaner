@@ -19,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: ‘3.8’  # 配置 Python 版本，可以根据需要调整
+        python-version: 3.8  # 配置 Python 版本，可以根据需要调整
 
     - name: Install dependencies
       run: |

@@ -3,7 +3,6 @@ import logging
 import time
 import random
 import cloudscraper
-#import random
 from bs4 import BeautifulSoup
 from .utils import create_session
 from .config import CROSSREF_API, YOUR_EMAIL
@@ -40,28 +39,6 @@ def extract_doi_from_url(url):
             return m.group(1)
     return None
 
-#修改前代码，无法跑出很多doi
-# def get_doi_from_webpage(url):
-    session = create_session()
-    try:
-        r = session.get(url, timeout=15)
-        soup = BeautifulSoup(r.content, 'html.parser')
-
-        for tag in soup.find_all('meta'):
-            name = tag.attrs.get('name', '').lower()
-            if 'doi' in name:
-                return tag.attrs.get('content')
-
-        for link in soup.find_all('a', href=re.compile(r'doi\.org')):
-            return link.get('href', '').split('doi.org/')[-1].strip()
-
-        m = re.search(r'\b10\.\d{4,9}/[-._;()/:A-Z0-9]+\b', soup.get_text(), re.IGNORECASE)
-        return m.group(0) if m else None
-
-    except Exception as e:
-        print(f"网页提取DOI失败: {e}")
-        return None
-###G老师帮忙修改的代码###
 def get_doi_from_webpage(url):
     session = create_session()
     headers = {
@@ -112,41 +89,6 @@ def get_doi_from_webpage(url):
     except Exception as e:
         logging.warning(f"[get_doi_from_webpage] 网页提取DOI失败: {e}")
         return None
-
-
-#def get_title_from_webpage(url):
-    #session = create_session()
-    #blacklist_keywords = ["access denied", "just a moment", "403", "error", "robot check", "cloudflare"]
-    #try:
-        logging.info(f"[get_title_from_webpage] 正在访问网页获取标题：{url}")
-        r = session.get(url, timeout=15)
-        soup = BeautifulSoup(r.content, 'html.parser')
-        
-        for selector in ['meta[property="og:title"]', 'meta[name="citation_title"]', 'h1', 'title']:
-            el = soup.select_one(selector)
-            if el:
-                title = el.get('content') if el.name == 'meta' else el.get_text()
-                if not title:
-                    continue
-                
-                # 清理并小写标题文本
-                title_clean = re.sub(r'[\n\r\t]+', ' ', title).strip().lower()
-                
-                # 判断是否为垃圾标题
-                if any(bad in title_clean for bad in blacklist_keywords) or len(title_clean) < 5:
-                    logging.warning(f"[get_title_from_webpage] ⚠️ 页面标题疑似无效，跳过，标题内容：'{title_clean}'")
-                    return None
-                
-                logging.info(f"[get_title_from_webpage] 成功提取标题：{title_clean}")
-                return title_clean
-        
-        logging.warning(f"[get_title_from_webpage] 未找到合适的标题标签")
-        return None
-    
-    #except Exception as e:
-        logging.error(f"[get_title_from_webpage] 网页提取标题失败: {e}")
-        return None
-
 
 def get_title_from_webpage(url, max_retries=3, delay=3, failed_url_list=None):
     blacklist_keywords = ["access denied", "just a moment", "403", "error", "robot check", "cloudflare"]
